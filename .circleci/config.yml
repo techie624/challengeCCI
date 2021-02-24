@@ -9,16 +9,4 @@ jobs:
      # build the application image
      - run:
         command: |
-          pwd=`pwd` && echo $pwd
-          ls -larth
-          git status
-          git branch
-          docker build . -t cci-nginx
-          docker run -dti -p 80:80 cci-nginx
-          docker ps -a
-          sleep 3
-          curl localhost
-        command: |
-          echo "test"
-
- 
+          bash init.sh 
