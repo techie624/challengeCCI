@@ -8,11 +8,10 @@ const driver = new webdriver.Builder()
 driver.get('http://localhost').then(function(){
 
 
-  driver.findElement(webdriver.By.id('button')).sendKeys('webdriver\n').then(function(elem){
-    elem.click()
-  }).then(function(){
-    driver.findElement(webdriver.By.id('text')).then(function(text){
-      expect(false)
-    })
+driver.findElement(webdriver.By.id('button')).sendKeys('webdriver\n').then(function(elem){
+  elem.click()
+}).then(function(){
+  driver.findElement(webdriver.By.id('text')).then(function(text){
+    expect(false)
   })
 })
