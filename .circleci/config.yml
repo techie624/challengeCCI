@@ -23,3 +23,14 @@ jobs:
           sleep 3
           curl localhost
 
+orbs:
+  node: circleci/node@x.y
+  jobs:
+  test:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          cache-path: ~/project/node_modules
+          override-ci-command: npm install
+      - run: node test.js
