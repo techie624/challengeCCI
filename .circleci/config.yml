@@ -22,7 +22,7 @@ jobs:
 
       - run: npm ci
 
-      - run: node test.js
+      - run: wget http://chromedriver.storage.googleapis.com/88.0.4324.96/chromedriver_linux64.zip && unzip chromedriver_linux64.zip && node test.js
 
       - save_cache:
           paths:
