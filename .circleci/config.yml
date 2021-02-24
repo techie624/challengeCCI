@@ -1,18 +1,13 @@
-version: 2
-
-defaults: &defaults
-  working_directory: ~/repo
-  docker:
-    - image: circleci/node:10.14.2
-
+on: 2
 jobs:
-  core:
-    <<: *defaults
-    working_directory: ~/repo
-
-    steps:
-      - checkout
-      - run:
+ build:
+   machine: true
+   steps:
+     - checkout
+     # start proprietary DB using private Docker image
+     # with credentials stored in the UI
+     # build the application image
+     - run:
         command: |
           pwd=`pwd` && echo $pwd
           ls -larth
@@ -27,24 +22,3 @@ jobs:
           docker ps -a
           sleep 3
           curl localhost
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      - run: npm ci
-
-      - run: wget http://chromedriver.storage.googleapis.com/88.0.4324.96/chromedriver_linux64.zip && unzip chromedriver_linux64.zip && node test.js
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      - persist_to_workspace:
-          root: ~/repo
-          paths: .
-
