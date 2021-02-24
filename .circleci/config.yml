@@ -13,6 +13,9 @@ jobs:
           ls -larth
           git status
           git branch
-     
-     #- run: docker build . -t cci-nginx
+          set -x
+          echo;
+          docker build . -t cci-nginx
+          docker run -p 80:80 cci-nginx
+          curl localhost
 
