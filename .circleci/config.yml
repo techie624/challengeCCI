@@ -12,6 +12,21 @@ jobs:
 
     steps:
       - checkout
+      - run:
+        command: |
+          pwd=`pwd` && echo $pwd
+          ls -larth
+          git status
+          git branch
+          set -x
+          echo;
+          docker build . -t cci-nginx
+          echo;
+          docker run -dti -p 80:80 cci-nginx
+          echo;
+          docker ps -a
+          sleep 3
+          curl localhost
 
       # Download and cache dependencies
       - restore_cache:
@@ -33,12 +48,3 @@ jobs:
           root: ~/repo
           paths: .
 
-workflows:
-  version: 2
-  core:
-    jobs:
-      - core:
-          filters:
-            branches:
-              only:
-                - develop
