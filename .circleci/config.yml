@@ -22,7 +22,7 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run test:ci
+      - run: node test.js
 
       - save_cache:
           paths:
