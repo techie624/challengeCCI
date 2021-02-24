@@ -16,6 +16,10 @@ jobs:
           set -x
           echo;
           docker build . -t cci-nginx
+          echo;
           docker run -p 80:80 cci-nginx
-          curl localhost
+          echo;
+          docker ps -a
+          sleep 10
+          # curl localhost
 
