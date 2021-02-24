@@ -20,11 +20,11 @@ RUN cp /etc/nginx/challengeCCI/nginx.conf /etc/nginx/nginx.conf \
 #-----------------------------------------------------------------------------#
 # install selenium
 
-RUN cd /etc/nginx/challengeCCI/ \
-	&& npm install selenium-webdriver --save \
-	&& wget http://chromedriver.storage.googleapis.com/88.0.4324.96/chromedriver_linux64.zip \
-	&& unzip chromedriver_linux64.zip \
-	&& node test.js
+# RUN cd /etc/nginx/challengeCCI/ \
+# 	&& npm install selenium-webdriver --save \
+# 	&& wget http://chromedriver.storage.googleapis.com/88.0.4324.96/chromedriver_linux64.zip \
+# 	&& unzip chromedriver_linux64.zip \
+# 	&& node test.js
 #RUN bash chromeInit.sh
 
 

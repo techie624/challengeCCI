@@ -13,13 +13,12 @@ jobs:
           ls -larth
           git status
           git branch
-          set -x
-          echo;
           docker build . -t cci-nginx
-          echo;
           docker run -dti -p 80:80 cci-nginx
-          echo;
           docker ps -a
           sleep 3
           curl localhost
+        command: |
+          echo "test"
+
  
