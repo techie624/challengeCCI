@@ -7,7 +7,7 @@ var assert = require('assert');
 const driver = new webdriver.Builder()
     .forBrowser('chrome')
     .build();
-driver.get('http://172.17.0.2').then(function(){
+driver.get('http://localhost').then(function(){
 
 
   driver.findElement(webdriver.By.id('button')).then(function(elem){
