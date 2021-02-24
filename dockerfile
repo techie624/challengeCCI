@@ -14,7 +14,8 @@ RUN apt-get update \
   && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
   && apt-get install -y nodejs build-essential \
   && cd /etc/nginx && git clone --depth 1 https://github.com/techie624/challengeCCI.git -b develop
-#RUN cp /etc/nginx/challengeCCI/nginx.conf /etc/nginx/nginx.conf
+RUN cp /etc/nginx/challengeCCI/nginx.conf /etc/nginx/nginx.conf \
+  && service nginx start
 
 #-----------------------------------------------------------------------------#
 # Expose ports
