@@ -6,6 +6,15 @@ const driver = new webdriver.Builder()
     .forBrowser('chrome')
     .build();
 driver.get('http://localhost').then(function(){
+
+
+driver.findElement(webdriver.By.id('button')).sendKeys('webdriver\n').then(function(elem){
+  elem.click()
+}).then(function(){
+  driver.findElement(webdriver.By.id('text')
+})
+
+
 driver.findElement(webdriver.By.name('q')).sendKeys('webdriver\n').then(function(){
     driver.getTitle().then(function(title) {
       console.log(title)
