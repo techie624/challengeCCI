@@ -1,36 +1,44 @@
-on: 2
-jobs:
- build:
-   machine: true
-   steps:
-     - checkout
-     # start proprietary DB using private Docker image
-     # with credentials stored in the UI
-     # build the application image
-     - run:
-        command: |
-          pwd=`pwd` && echo $pwd
-          ls -larth
-          git status
-          git branch
-          set -x
-          echo;
-          docker build . -t cci-nginx
-          echo;
-          docker run -dti -p 80:80 cci-nginx
-          echo;
-          docker ps -a
-          sleep 3
-          curl localhost
+version: 2
 
-orbs:
-  node: circleci/node@x.y
-  jobs:
-  test:
-    executor: node/default
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:10.14.2
+
+jobs:
+  core:
+    <<: *defaults
+    working_directory: ~/repo
+
     steps:
       - checkout
-      - node/install-packages:
-          cache-path: ~/project/node_modules
-          override-ci-command: npm install
-      - run: node test.js
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: npm ci
+
+      - run: npm run test.js
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
+
+workflows:
+  version: 2
+  core:
+    jobs:
+      - core:
+          filters:
+            branches:
+              only:
+                - develop
