@@ -9,10 +9,7 @@ jobs:
      # build the application image
      - run:
         command: |
-          echo Running test
-          set +e
-          mkdir -p /tmp/test-results
-          make test
           pwd=`pwd` && echo $pwd
+          ls -larth
      
-     - run: docker build . -t cci-nginx
+     #- run: docker build . -t cci-nginx
