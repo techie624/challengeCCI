@@ -24,4 +24,4 @@ docker run -dti -p 80:80 -v $pwd:$pwd --name cci-node cci-nginx
 docker ps -a
 sleep 3
 curl localhost
-docker exec cci-node bash -c "cd $pwd && node test.js"
+cat index.js
