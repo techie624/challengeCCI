@@ -20,13 +20,13 @@ RUN cp /etc/nginx/challengeCCI/nginx.conf /etc/nginx/nginx.conf \
 #-----------------------------------------------------------------------------#
 # install node, npm & selenium
 
-RUN apt install npm libssl1.0-dev nodejs-dev node-gyp
+# RUN apt install npm libssl1.0-dev nodejs-dev node-gyp
 
-RUN cd /etc/nginx/challengeCCI/ \
- 	&& npm install bufferutil@^4.0.1 utf-8-validate@^5.0.2 selenium-webdriver --save \
-	&& npm install -g n \
- 	&& wget http://chromedriver.storage.googleapis.com/88.0.4324.96/chromedriver_linux64.zip \
- 	&& unzip chromedriver_linux64.zip
+# RUN cd /etc/nginx/challengeCCI/ \
+#  	&& npm install bufferutil@^4.0.1 utf-8-validate@^5.0.2 selenium-webdriver --save \
+# 	&& npm install -g n \
+#  	&& wget http://chromedriver.storage.googleapis.com/88.0.4324.96/chromedriver_linux64.zip \
+#  	&& unzip chromedriver_linux64.zip
 
 #-----------------------------------------------------------------------------#
 # Expose ports
