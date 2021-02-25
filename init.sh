@@ -20,9 +20,8 @@ ls -larth
 git status
 git branch
 docker build . -t cci-nginx
-docker run -dti -p 80:80 cci-nginx
+docker run -dti -p 80:80 -v $pwd:$pwd --name cci-node cci-nginx
 docker ps -a
 sleep 3
 curl localhost
-docker run -d -p 4444:4444 --name sel-node -v /dev/shm:/dev/shm -v $pwd:$pwd selenium/node-chrome:88.0.4324.150-chromedriver-88.0.4324.96-20210215
-docker exec sel-node bash -c "cd $pwd && node test.js"
+docker exec cci-node bash -c "cd $pwd && node test.js"

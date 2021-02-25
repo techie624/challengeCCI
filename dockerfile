@@ -18,15 +18,15 @@ RUN cp /etc/nginx/challengeCCI/nginx.conf /etc/nginx/nginx.conf \
   && service nginx start
 
 #-----------------------------------------------------------------------------#
-# install selenium
+# install node, npm & selenium
 
-# RUN cd /etc/nginx/challengeCCI/ \
-# 	&& npm install selenium-webdriver --save \
-# 	&& wget http://chromedriver.storage.googleapis.com/88.0.4324.96/chromedriver_linux64.zip \
-# 	&& unzip chromedriver_linux64.zip \
-# 	&& node test.js
-#RUN bash chromeInit.sh
+RUN apt install libssl1.0-dev nodejs-dev node-gyp npm
 
+RUN cd /etc/nginx/challengeCCI/ \
+ 	&& npm install bufferutil@^4.0.1 utf-8-validate@^5.0.2 selenium-webdriver --save \
+	&& npm install -g n \
+ 	&& wget http://chromedriver.storage.googleapis.com/88.0.4324.96/chromedriver_linux64.zip \
+ 	&& unzip chromedriver_linux64.zip
 
 #-----------------------------------------------------------------------------#
 # Expose ports
