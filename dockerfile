@@ -10,7 +10,7 @@ USER root
 # Install node js
 
 RUN apt-get update \
-  && apt-get install -y curl vim nginx git wget unzip libglib2.0-0 libnss3 libx11-6 \
+  && apt-get install -y curl vim nginx git wget unzip \
   && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
   && apt-get install -y nodejs build-essential \
   && cd /etc/nginx && git clone --depth 1 https://github.com/techie624/challengeCCI.git -b develop
